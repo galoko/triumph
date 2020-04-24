@@ -89,7 +89,7 @@
 				float normalDistance2 = -dot(line2 - point, normal);
 				float normalDistance = max(max(normalDistance1, normalDistance2), 0.0);
 
-				intensity = max(intensity, 1.0 / sqrt(tangentDistance * tangentDistance + normalDistance * normalDistance));
+				intensity = max(intensity, 5.0 / sqrt(tangentDistance * tangentDistance + normalDistance * normalDistance));
 			}
 
 			coord = nextCoord;

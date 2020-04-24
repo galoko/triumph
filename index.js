@@ -190,7 +190,7 @@ let lastX, lastY;
 function writeCoord(x, y) {
     if (lastX !== undefined && lastY !== undefined) {
         const distance = Math.abs(lastX - x) + Math.abs(lastY - y);
-        if (distance < 64 / (SCALING * SCALING)) {
+        if (distance < 16 / SCALING) {
             return;
         }
     }
