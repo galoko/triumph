@@ -81,7 +81,7 @@
 				vec2 delta = line2 - line1;
 				
 				float lineLength = length(delta);
-				vec2 normal = lineLength < 0.0001 ? vec2(0, 1) : delta / lineLength;
+				vec2 normal = lineLength < 0.1 ? vec2(0, 1) : delta / lineLength;
 				vec2 tangent = vec2(normal.y, -normal.x);
 
 				float tangentDistance = abs(dot(line1 - point, tangent));
