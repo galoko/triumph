@@ -89,6 +89,12 @@ canvas.addEventListener('touchmove', (e) => {
 });
 canvas.addEventListener('touchend', (e) => {
     if (isPressed) {
+        if (e.touches.length > 0) {
+            const x = e.touches[0].clientX;
+            const y = e.touches[0].clientY;
+            writeCoord(x * dpr, (screenHeight - y) * dpr, true);
+        }
+
         writeTrail();
         isPressed = false;
     }
@@ -234,7 +240,7 @@ function resize() {
 	const width = document.body.clientWidth;
 	const height = document.body.clientHeight;
 	
-	dpr = 1 / SCALING;
+	dpr = window.devicePixelRatio / SCALING;
 	
 	screenWidth = width;
 	screenHeight = height;
