@@ -75,6 +75,8 @@ canvas.addEventListener('touchstart', (e) => {
     const y = e.touches[0].clientY;
 
     writeCoord(x * dpr, (screenHeight - y) * dpr, true);
+
+    e.preventDefault();
 });
 canvas.addEventListener('touchmove', (e) => {
     const x = e.touches[0].clientX;
