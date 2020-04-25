@@ -84,18 +84,24 @@ canvas.addEventListener('touchmove', (e) => {
 
     if (isPressed)
         writeCoord(x * dpr, (screenHeight - y) * dpr);
+
+        e.preventDefault();
 });
 canvas.addEventListener('touchend', (e) => {
     if (isPressed) {
         writeTrail();
         isPressed = false;
     }
+
+    e.preventDefault();
 });
 canvas.addEventListener('touchcancel', (e) => {
     if (isPressed) {
         writeTrail();
         isPressed = false;
     }
+
+    e.preventDefault();
 });
 
 // utils
