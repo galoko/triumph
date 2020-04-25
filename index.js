@@ -38,7 +38,7 @@ canvas.addEventListener('mousedown', (e) => {
     const x = e.clientX;
     const y = e.clientY;
 
-    writeCoord(x * dpr, (screenHeight - y) * dpr);
+    writeCoord(x * dpr, (screenHeight - y) * dpr, true);
 });
 canvas.addEventListener('mousemove', (e) => {
     const x = e.clientX;
@@ -52,7 +52,7 @@ canvas.addEventListener('mouseup', (e) => {
     const y = e.clientY;
 
     if (isPressed) {
-        writeCoord(x * dpr, (screenHeight - y) * dpr);
+        writeCoord(x * dpr, (screenHeight - y) * dpr, true);
         writeTrail();
         isPressed = false;
     }
@@ -62,7 +62,7 @@ canvas.addEventListener('mouseleave', (e) => {
     const y = e.clientY;
 
     if (isPressed) {
-        writeCoord(x * dpr, (screenHeight - y) * dpr);
+        writeCoord(x * dpr, (screenHeight - y) * dpr, true);
         writeTrail();
         isPressed = false;
     }
@@ -74,7 +74,7 @@ canvas.addEventListener('touchstart', (e) => {
     const x = e.touches[0].clientX;
     const y = e.touches[0].clientY;
 
-    writeCoord(x * dpr, (screenHeight - y) * dpr);
+    writeCoord(x * dpr, (screenHeight - y) * dpr, true);
 });
 canvas.addEventListener('touchmove', (e) => {
     const x = e.touches[0].clientX;
@@ -187,8 +187,8 @@ function allocPointsBuffer() {
 
 let lastX, lastY;
 
-function writeCoord(x, y) {
-    if (lastX !== undefined && lastY !== undefined) {
+function writeCoord(x, y, force) {
+    if (lastX !== undefined && lastY !== undefined && !force) {
         const distance = Math.abs(lastX - x) + Math.abs(lastY - y);
         if (distance < 16 / SCALING) {
             return;
@@ -219,14 +219,14 @@ function writeCoord(x, y) {
 }
 
 function writeTrail() {
-    writeCoord(65535, 65535);
+    writeCoord(65535, 65535, true);
 }
 
 function resize() {
 	const width = document.body.clientWidth;
 	const height = document.body.clientHeight;
 	
-	dpr = window.devicePixelRatio / SCALING;
+	dpr = (1 / window.devicePixelRatio) / SCALING;
 	
 	screenWidth = width;
 	screenHeight = height;
