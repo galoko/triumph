@@ -234,7 +234,7 @@ function resize() {
 	const width = document.body.clientWidth;
 	const height = document.body.clientHeight;
 	
-	dpr = window.devicePixelRatio / SCALING;
+	dpr = 1 / SCALING;
 	
 	screenWidth = width;
 	screenHeight = height;
